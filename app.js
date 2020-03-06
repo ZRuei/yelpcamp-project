@@ -1,10 +1,10 @@
 const express = require('express');
-
-const app = express();
-
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const Campground = require('./models/campground');
+
+const app = express();
 
 dotenv.config();
 mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -19,12 +19,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // schema setup
-const campgroundSchema = new mongoose.Schema({
-  name: String,
-  image: String,
-  description: String,
-});
-const Campground = mongoose.model('Campground', campgroundSchema);
 
 app.get('/', (req, res) => {
   res.render('landing');
