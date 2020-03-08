@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const seedDB = require('./seeds');
 const Campground = require('./models/campground');
+const Comment = require('./models/comment');
 
 const app = express();
 
@@ -16,9 +18,8 @@ mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: t
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
+seedDB();
 
-
-// schema setup
 
 app.get('/', (req, res) => {
   res.render('landing');
@@ -58,14 +59,16 @@ app.get('/campgrounds/new', (req, res) => {
 // ----- show: specific page -----
 app.get('/campgrounds/:id', (req, res) => {
   // find specific campground with id
-  Campground.findById(req.params.id, (err, foundCampground) => {
-    if (err) {
-      console.log(err);
-    } else {
-      // show the page
-      res.render('show', { campground: foundCampground });
-    }
-  });
+  Campground.findById(req.params.id)
+    .populate('comments')
+    .exec((err, foundCampground) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // show the page
+        res.render('show', { campground: foundCampground });
+      }
+    });
 });
 
 
