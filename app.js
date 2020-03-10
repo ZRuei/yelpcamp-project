@@ -42,11 +42,7 @@ app.get('/campgrounds', (req, res) => {
 
 // ------ create: post new campground -----
 app.post('/campgrounds', (req, res) => {
-  // TODO refactor：修改 new.ejs 的 name 屬性 campground[name] / campground[image]...
-  // 讓 post 直接帶 campground 物件來
-  const { name, image, description } = req.body;
-  const newCampgroundData = { name, image, description };
-  Campground.create(newCampgroundData, (err, newCampground) => {
+  Campground.create(req.body.campground, (err, newCampground) => {
     if (err) {
       console.log(err);
     } else {
