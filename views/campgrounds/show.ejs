@@ -4,6 +4,9 @@
 <p><%= campground.name  %> </p>
 <img src="<%= campground.image %>" alt="">
 <p><%= campground.description %></p>
+
+<a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
+
 <% campground.comments.forEach((comment) => { %>
   <p><%= comment.author %> - <%= comment.text %></p>
 <% }) %>
