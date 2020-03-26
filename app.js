@@ -25,11 +25,11 @@ mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: t
     console.log('ERROR: ', err.message);
   });
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/public`));
-seedDB();
+// seedDB();
 
 // passport configuration
 app.use(expressSession({
