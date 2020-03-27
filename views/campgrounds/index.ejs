@@ -17,9 +17,10 @@
 			<div class="card">
 				<img src="<%= campground.image %>" class="card-img-top">
 				<div class="card-body">
-					<h5 class="card-title"><%= campground.name %></h5>
+					<h5 class="card-title"><a><%= campground.name %></a></h5>
 					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
 						content.</p>
+					<p class="card-text">added by <%= campground.author.username %></p>
 					<a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">Go somewhere</a>
 				</div>
 			</div>
