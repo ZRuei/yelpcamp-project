@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Comment = require('./comment');
 
 const campgroundSchema = new mongoose.Schema({
   name: String,
@@ -18,4 +19,18 @@ const campgroundSchema = new mongoose.Schema({
     },
   ],
 });
+
+// remove the campground with their comments
+campgroundSchema.pre('remove', async function () {
+  try {
+    await Comment.deleteMany({
+      _id: {
+        $in: this.comments,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = mongoose.model('Campground', campgroundSchema);

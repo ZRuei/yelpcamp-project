@@ -5,7 +5,7 @@
 <img src="<%= campground.image %>">
 <p><%= campground.description %></p>
 <a class="btn btn-warning" href="/campgrounds/<%= campground.id %>/edit">Edit</a>
-<form class="d-inline" action="/campgrounds/<%= campground.id %>?_method=DELETE">
+<form class="d-inline" action="/campgrounds/<%= campground.id %>?_method=DELETE" method="POST">
   <button class="btn btn-danger">Delete</button>
 </form>
 
