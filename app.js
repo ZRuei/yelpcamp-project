@@ -6,6 +6,8 @@ const expressSession = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const passportLocalMongoose = require('passport-local-mongoose');
+const methodOverride = require('method-override');
+
 const app = express();
 
 const Campground = require('./models/campground');
@@ -24,11 +26,12 @@ mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: t
   }).catch((err) => {
     console.log('ERROR: ', err.message);
   });
-
+mongoose.set('useFindAndModify', false);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/public`));
+app.use(methodOverride('_method'));
 // seedDB();
 
 // passport configuration

@@ -1,9 +1,13 @@
 <%- include('../partials/header.ejs') %>
 
 <h1>SHOW PAGE</h1>
-<p><%= campground.name  %> </p>
-<img src="<%= campground.image %>" alt="">
+<p><%= campground.name  %></p>
+<img src="<%= campground.image %>">
 <p><%= campground.description %></p>
+<a class="btn btn-warning" href="/campgrounds/<%= campground.id %>/edit">Edit</a>
+<form class="d-inline" action="/campgrounds/<%= campground.id %>?_method=DELETE">
+  <button class="btn btn-danger">Delete</button>
+</form>
 
 <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
 
