@@ -43,8 +43,9 @@ router.get('/:id', (req, res) => {
   Campground.findById(req.params.id)
     .populate('comments')
     .exec((err, foundCampground) => {
-      if (err) {
-        console.log(err);
+      if (err || !foundCampground) {
+        req.flash('errorMsg', 'Campground not found');
+        res.redirect('back');
       } else {
         // show the page
         res.render('campgrounds/show', { campground: foundCampground });
@@ -55,11 +56,7 @@ router.get('/:id', (req, res) => {
 // edit: show edit form for one campground
 router.get('/:id/edit', middleware.checkCampgroundOwnership, (req, res) => {
   Campground.findById(req.params.id, (err, foundCampground) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render('campgrounds/edit', { campground: foundCampground });
-    }
+    res.render('campgrounds/edit', { campground: foundCampground });
   });
 });
 

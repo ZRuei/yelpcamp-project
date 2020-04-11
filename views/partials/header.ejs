@@ -20,32 +20,38 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
-          <% if (!currentUser) { %>
-            <li class="nav-item">
-              <a class="nav-link" href="/register"><%= currentUser %> Sign up</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login">Log in</a>
-            </li>
-          <% } else { %>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Hi <%= currentUser.username %></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
-            </li>
-          <% } %> 
-              
-
-              
-           
-            
-            
+            <% if (!currentUser) { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/register"><%= currentUser %> Sign up</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Log in</a>
+              </li>
+            <% } else { %>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Hi <%= currentUser.username %></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+              </li>
+            <% } %>
           </ul>
         </div>
-
-
       </div>
     </nav>
+    <div class="container">
 
+    <% if (errorMsg && errorMsg.length > 0) { %>
+      <div class="alert alert-danger">
+        <%= errorMsg %>
+      </div>
+    <% } %>
+
+    <% if (successMsg && successMsg.length > 0) { %>
+      <div class="alert alert-success">
+        <%= successMsg %>
+      </div>
+    <% } %>
+
+    </div>
   </header>
