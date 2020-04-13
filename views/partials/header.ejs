@@ -39,19 +39,5 @@
         </div>
       </div>
     </nav>
-    <div class="container">
-
-    <% if (errorMsg && errorMsg.length > 0) { %>
-      <div class="alert alert-danger">
-        <%= errorMsg %>
-      </div>
-    <% } %>
-
-    <% if (successMsg && successMsg.length > 0) { %>
-      <div class="alert alert-success">
-        <%= successMsg %>
-      </div>
-    <% } %>
-
-    </div>
+    <%- include('./message.ejs') %>
   </header>
