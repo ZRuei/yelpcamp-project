@@ -7,37 +7,39 @@
   <title>YelpCamp</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/main.css">
 </head>
 
 <body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a href="/" class="navbar-brand">YelpCamp</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <% if (!currentUser) { %>
-              <li class="nav-item">
-                <a class="nav-link" href="/register"><%= currentUser %> Sign up</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/login">Log in</a>
-              </li>
-            <% } else { %>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Hi <%= currentUser.username %></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-              </li>
-            <% } %>
-          </ul>
-        </div>
+  <header class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+  
+    <div class="container-fluid">
+      <a href="/" class="navbar-brand">YelpCamp</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <% if (!currentUser) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">登入</a>
+            </li>
+            <li class="nav-item ml-3">
+              <a class="btn btn-outline-primary" href="/register"><%= currentUser %>註冊</a>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="#">歡迎回來～ <%= currentUser.username %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">登出</a>
+            </li>
+          <% } %>
+        </ul>
       </div>
-    </nav>
-    <%- include('./message.ejs') %>
+    </div>
+  
   </header>
+  <%- include('./message.ejs') %>
+  <div class="container mt-5">

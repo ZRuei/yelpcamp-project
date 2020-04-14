@@ -19,7 +19,7 @@ router.post('/register', (req, res) => {
   User.register(newUser, req.body.password, (err, user) => {
     if (err) {
       req.flash('errorMsg', err.message);
-      return res.render('auth/register');
+      return res.redirect('/register');
     }
     passport.authenticate('local')(req, res, () => {
       req.flash('successMsg', `Welcome to YelpCamp ${user.username}`);
@@ -32,6 +32,7 @@ router.post('/register', (req, res) => {
 router.get('/login', (req, res) => {
   res.render('auth/login');
 });
+// TODO add flash msg
 router.post('/login', passport.authenticate('local',
   {
     successRedirect: '/campgrounds',
@@ -41,7 +42,7 @@ router.post('/login', passport.authenticate('local',
 // ----- logout -----
 router.get('/logout', (req, res) => {
   req.logout();
-  req.flash('successMsg', 'Logged you out!');
+  req.flash('successMsg', '已成功將您登出');
   res.redirect('/campgrounds');
 });
 

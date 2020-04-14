@@ -1,28 +1,45 @@
 <%- include('../partials/header.ejs') %>
+  <div class="row">
+    <div class="col-md-3">
+      <p class="lead">YelpCamp</p>
+      <div class="list-group">
+        <li class="list-group-item active">Info 1</li>
+        <li class="list-group-item">Info 2</li>
+        <li class="list-group-item">Info 3</li>
+      </div>
+    </div>
 
-<h1>SHOW PAGE</h1>
-<p><%= campground.name  %></p>
-<img src="<%= campground.image %>">
-<p><%= campground.description %></p>
-
-<% if (currentUser && campground.author.id.equals(currentUser._id)) { %>
-      <a class="btn btn-warning" href="/campgrounds/<%= campground.id %>/edit">Edit</a>
-      <form class="d-inline" action="/campgrounds/<%= campground.id %>?_method=DELETE" method="POST">
-        <button class="btn btn-danger">Delete</button>
-      </form>
-<% } %>
-
-<a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
-
-<% campground.comments.forEach((comment) => { %>
-  <p><%= comment.author.username %> - <%= comment.text %></p>
-  <% if (currentUser && comment.author.id.equals(currentUser._id)){ %>
-        <a class="btn btn-warning btn-sm" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">Edit</a>
-        <form class="d-inline" action="/campgrounds/<%= campground.id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-          <button class="btn  btn-sm btn-danger">Delete</button>
-        </form>
-  <% } %>
-  
-<% }) %>
+    <div class="col-md-9">
+      <div class="card">
+        <img src="<%= campground.image %>">
+        <div class="card-body">
+          <h4 class="card-title"><%= campground.name %>
+            <span class="ml-3">
+              <% if (currentUser && campground.author.id.equals(currentUser._id)) { %>
+                <a class="btn btn-warning btn-sm" href="/campgrounds/<%= campground.id %>/edit">編輯</a>
+                <form class="d-inline" action="/campgrounds/<%= campground.id %>?_method=DELETE" method="POST">
+                  <button class="btn btn-danger btn-sm">刪除</button>
+                </form>
+              <% } %>
+            </span>
+            <span class="h6 float-right">$9.00/night</span>
+          </h4>
+          <p class="card-text"><%= campground.description %></p>
+          <a class="btn btn-outline-secondary float-right" href="/campgrounds/<%= campground._id %>/comments/new">新增留言</a>
+        </div>
+      </div>
+      
+      <% campground.comments.forEach((comment) => { %>
+        <hr>
+        <p><%= comment.author.username %> - <%= comment.text %></p>
+        <% if (currentUser && comment.author.id.equals(currentUser._id)){ %>
+          <a class="btn btn-warning btn-sm" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">編輯</a>
+          <form class="d-inline" action="/campgrounds/<%= campground.id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+            <button class="btn  btn-sm btn-danger">刪除</button>
+          </form>
+        <% } %>
+      <% }) %>
+    </div>
+  </div>
 
 <%- include('../partials/footer.ejs') %>

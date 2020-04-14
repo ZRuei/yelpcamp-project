@@ -1,12 +1,19 @@
 <%- include('../partials/header.ejs') %>
 
-<h1>Log in here</h1>
-<form action="/login" method="POST">
-  <label for="username">Username</label>
-  <input type="text" name="username" id="username" placeholder="username">
-  <label for="password">Password</label>
-  <input type="password" name="password" id="password" placeholder="password">
-  <button type="submit">submit</button>
-</form>
+  <div class="row justify-content-center mt-5">
+    <div class="col-4">
+      <h1 class="h3 text-center mb-3">登入</h1>
+      <form action="/login" method="POST">
+        <div class="form-group">
+          <input type="text" class="form-control" name="username" placeholder="請輸入使用者名稱"">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" name="password" placeholder="請輸入密碼">
+        </div>
+        <p class="info-text">還沒有帳號嗎？歡迎<a href="/register">註冊</a></p>
+        <button type="submit" class="btn btn-primary btn-block">登入</button>
+      </form>
+    </div>
+  </div>
 
 <%- include('../partials/footer.ejs') %>
